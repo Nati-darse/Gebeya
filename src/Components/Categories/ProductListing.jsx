@@ -1,5 +1,3 @@
-// all Imports
-
 import React, { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 
@@ -35,7 +33,6 @@ import coffee from '../../assets/imgforcategories/coffee.jpg';
 import tea from '../../assets/imgforcategories/tea.jpg';
 import avocado from '../../assets/imgforcategories/avocado.jpg';
 
-// Sample product data
 const products = [
   { id: 1, name: "Arabica Coffee | አረቢክ ቡና", category: "Coffee and Tea", price: "500", imageUrl: arabica },
   { id: 2, name: "Avocados | አቮካዶ", category: "Fruits and Vegetables", price: "65 ", imageUrl: avocado },
@@ -68,143 +65,143 @@ const products = [
   { id: 29, name: "Wheat |ስንዴ", category: "Cereal Grains", price: "115 ", imageUrl: wheat },
   { id: 30, name: "Yogurt |እርጎ", category: "Dairy Products", price: "190 ", imageUrl: yogurt },
 ];
-  
-  const categories = [
-    
-    "Fruits and Vegetables",
-    "Cereal Grains",
-    "Dairy Products",
-    "Oil Seeds",
-    "Coffee and Tea",
-    "Honey and Bee Products"
-  ];
-  
-  const priceRanges = [
-    { label: "Under 100 ETB", max: 100 },
-    { label: "100 - 200 ETB", min: 100, max: 200 },
-    { label: "200 - 300 ETB", min: 200, max: 300 },
-    { label: "300 - 400 ETB", min: 300, max: 400 },
-    { label: "Above 400 ", min: 401 },
-  ];
-  
-  const ProductListing = () => {
-    const [selectedCategories, setSelectedCategories] = useState([]);
-    const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
-  
-    const handleCategoryChange = (category) => {
-      setSelectedCategories(prev =>
-        prev.includes(category) ? prev.filter(c => c !== category) : [...prev, category]
-      );
-    };
-  
-    const handlePriceChange = (range) =>{
-      setSelectedPriceRanges(prev =>
-        prev.includes(range) ? prev.filter(r => r !== range) : [...prev, range]
-      );
-    };
-  
-    const filteredProducts = products.filter(product => {
-      const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(product.category);
-      const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
-  
-      const matchesPrice = selectedPriceRanges.length === 0 || selectedPriceRanges.some(range => {
-        if (range.min && range.max) {
-          return product.price >= range.min && product.price < range.max;
-        }
-        if (range.max) {
-          return product.price < range.max;
-        }
-        if (range.min){
-            return product.price > range.min 
-        }
-        return true; // Default case for no price range
-      });
-  
-      return matchesCategory && matchesSearch && matchesPrice;
-    });
-  
-    return (
-      <div className="container mx-auto flex">
-        {/* Sidebar */}
-        <aside className="w-1/4 bg-gray-100 p-4">
-          <h2 className="font-bold mb-4">Categories</h2>
-          <ul>
-            {categories.map((category) => (
-              <li key={category}>
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    value={category}
-                    checked={selectedCategories.includes(category)}
-                    onChange={() => handleCategoryChange(category)}
-                    className="mr-2"
-                  />
-                  {category}
-                </label>
-              </li>
-            ))}
-          </ul>
-  
-          <h2 className="font-bold mt-6 mb-4">Price Range</h2>
-          <ul>
-            {priceRanges.map((range) => (
-              <li key={range.label}>
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    value={range.label}
-                    checked={selectedPriceRanges.includes(range)}
-                    onChange={() => handlePriceChange(range)}
-                    className="mr-2"
-                  />
-                  {range.label}
-                </label>
-              </li>
-            ))}
-          </ul>
-        </aside>
-  
-        {/* Main Content */}
-        <main className="flex-grow p-4">
-          {/* Header */}
-          <header className="flex justify-between items-center mb-4">
-            <div className="flex items-center">
-              <img src={logo} alt="Logo" className="h-14  w-24 mr-2" /> 
-              <h1 className="text-2xl font-bold text-green-700">Agricultural Market </h1>
-            </div>
-  
-            {/* Search Bar */}
-            <div className="relative flex-grow mx-4">
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search products..."
-                className="border border-gray-300 rounded-lg p-2 pl-10 pr-2 w-full" 
-              />
-              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
-            </div>
-          </header>
-  
-          {/* Additional Text */}
-          <h6 className="text-l mb-4">Different products from different regions of the country</h6>
-          <hr className="font-bold shadow-md border-2"/>
-  
-          {/* Product Listings */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-            {filteredProducts.map(product => (
-              <div key={product.id} className="border rounded-lg p-4 shadow-md">
-                <img src={product.imageUrl} alt={product.name} className="w-full h-40 object-cover mb-4" />
-                <h2 className="text-lg font-bold">{product.name}</h2>
-                <p className="text-gray-600">{product.price} ETB/kg </p>
-                <button className="mt-2 bg-green-500 text-white py-1 px-2 rounded">Add to Cart</button>
-              </div>
-            ))}
-          </div>
-        </main>
-      </div>
+
+const categories = [
+  "Fruits and Vegetables",
+  "Cereal Grains",
+  "Dairy Products",
+  "Oil Seeds",
+  "Coffee and Tea",
+  "Honey and Bee Products"
+];
+
+const priceRanges = [
+  { label: "Under 100 ETB", max: 100 },
+  { label: "100 - 200 ETB", min: 100, max: 200 },
+  { label: "200 - 300 ETB", min: 200, max: 300 },
+  { label: "300 - 400 ETB", min: 300, max: 400 },
+  { label: "Above 400 ", min: 401 },
+];
+
+const ProductListing = () => {
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategories(prev =>
+      prev.includes(category) ? prev.filter(c => c !== category) : [...prev, category]
     );
   };
-  
-  export default ProductListing;
+
+  const handlePriceChange = (range) => {
+    setSelectedPriceRanges(prev =>
+      prev.includes(range) ? prev.filter(r => r !== range) : [...prev, range]
+    );
+  };
+
+  const filteredProducts = products.filter(product => {
+    const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(product.category);
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesPrice = selectedPriceRanges.length === 0 || selectedPriceRanges.some(range => {
+      if (range.min && range.max) {
+        return product.price >= range.min && product.price < range.max;
+      }
+      if (range.max) {
+        return product.price < range.max;
+      }
+      if (range.min) {
+        return product.price > range.min;
+      }
+      return true;
+    });
+
+    return matchesCategory && matchesSearch && matchesPrice;
+  });
+
+  return (
+    <div className="flex flex-col md:flex-row container mx-auto p-4">
+      {/* Sidebar */}
+      <aside className="w-full md:w-1/4 bg-gray-100 p-4 rounded-lg shadow-md mb-4 md:mb-0">
+        <h2 className="font-bold mb-4 text-lg">Categories</h2>
+        <ul>
+          {categories.map((category) => (
+            <li key={category}>
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  value={category}
+                  checked={selectedCategories.includes(category)}
+                  onChange={() => handleCategoryChange(category)}
+                  className="mr-2"
+                />
+                {category}
+              </label>
+            </li>
+          ))}
+        </ul>
+
+        <h2 className="font-bold mt-6 mb-4 text-lg">Price Range</h2>
+        <ul>
+          {priceRanges.map((range) => (
+            <li key={range.label}>
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  value={range.label}
+                  checked={selectedPriceRanges.includes(range)}
+                  onChange={() => handlePriceChange(range)}
+                  className="mr-2"
+                />
+                {range.label}
+              </label>
+            </li>
+          ))}
+        </ul>
+      </aside>
+
+      {/* Main Content */}
+      <main className="flex-grow p-4">
+        {/* Header */}
+        <header className="flex justify-between items-center mb-4">
+          <div className="flex items-center">
+            <img src={logo} alt="Logo" className="h-14 w-24 mr-2" />
+            <h1 className="text-2xl font-bold text-green-700">Agricultural Market</h1>
+          </div>
+
+          {/* Search Bar */}
+          <div className="relative flex-grow mx-4">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search products..."
+              className="border border-gray-300 rounded-lg p-2 pl-10 pr-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+            <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
+          </div>
+        </header>
+
+        <h6 className="text-lg mb-4">Different products from different regions of the country</h6>
+        <hr className="font-bold shadow-md border-2" />
+
+        {/* Product Listings */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+          {filteredProducts.map(product => (
+            <div key={product.id} className="bg-white rounded-lg p-4 shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
+              <img src={product.imageUrl} alt={product.name} className="w-full h-40 object-cover mb-4 rounded-md" />
+              <h2 className="text-lg font-semibold text-gray-700">{product.name}</h2>
+              <p className="text-gray-500">{product.price} ETB/kg</p>
+              <button className="mt-2 bg-green-500 text-white py-2 px-4 rounded-md transition-colors hover:bg-green-600">
+                Add to Cart
+              </button>
+            </div>
+          ))}
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default ProductListing;

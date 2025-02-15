@@ -10,7 +10,8 @@ import Home from "./Components/Leadingpage/Home/Home";
 import Blog from "./Components/Leadingpage/Blog";
 import Contact from './Components/Leadingpage/Contact'
 import TermsAndConditions from './Components/Registration/TermsAndCondition'
-import ProductListing from "./Components/Categories/ProductlListing";
+import ProductListing from "./Components/Categories/ProductListing";
+
 
 
 const App = () => {
