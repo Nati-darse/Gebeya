@@ -125,10 +125,10 @@ const ProductListing = () => {
       {/* Sidebar */}
       <aside className="w-full md:w-1/4 bg-gray-100 p-4 rounded-lg shadow-md mb-4 md:mb-0">
         <h2 className="font-bold mb-4 text-lg">Categories</h2>
-        <ul>
-          {categories.map((category) => (
-            <li key={category}>
-              <label className="flex items-center">
+        <div className="overflow-x-auto">
+          <ul className="flex flex-wrap gap-2">
+            {categories.map((category) => (
+              <li key={category} className="flex items-center">
                 <input
                   type="checkbox"
                   value={category}
@@ -136,26 +136,24 @@ const ProductListing = () => {
                   onChange={() => handleCategoryChange(category)}
                   className="mr-2"
                 />
-                {category}
-              </label>
-            </li>
-          ))}
-        </ul>
+                <span className="text-sm md:text-base">{category}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <h2 className="font-bold mt-6 mb-4 text-lg">Price Range</h2>
         <ul>
           {priceRanges.map((range) => (
-            <li key={range.label}>
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  value={range.label}
-                  checked={selectedPriceRanges.includes(range)}
-                  onChange={() => handlePriceChange(range)}
-                  className="mr-2"
-                />
-                {range.label}
-              </label>
+            <li key={range.label} className="flex items-center">
+              <input
+                type="checkbox"
+                value={range.label}
+                checked={selectedPriceRanges.includes(range)}
+                onChange={() => handlePriceChange(range)}
+                className="mr-2"
+              />
+              <span className="text-sm">{range.label}</span>
             </li>
           ))}
         </ul>
@@ -164,8 +162,8 @@ const ProductListing = () => {
       {/* Main Content */}
       <main className="flex-grow p-4">
         {/* Header */}
-        <header className="flex justify-between items-center mb-4">
-          <div className="flex items-center">
+        <header className="flex flex-col sm:flex-row justify-between items-center mb-4">
+          <div className="flex items-center mb-4 sm:mb-0">
             <img src={logo} alt="Logo" className="h-14 w-24 mr-2" />
             <h1 className="text-2xl font-bold text-green-700">Agricultural Market</h1>
           </div>
