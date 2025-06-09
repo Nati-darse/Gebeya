@@ -1,34 +1,67 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Toaster } from 'react-hot-toast';
 
-import { BrowserRouter as Router, Route, Routes ,Link } from "react-router-dom";
-import Registration from "./Components/Registration/Registration";
-import Signup from "./Components/Registration/Signup";
-import Signin from "./Components/Registration/Login";
+// Import components
+import Registration from "./components/Registration/Registration";
+import Signup from "./components/Registration/Signup";
+import Signin from "./components/Registration/Login";
+import About from "./components/Leadingpage/About";
+import Home from "./components/Leadingpage/Home/Home";
+import Blog from "./components/Leadingpage/Blog";
+import Contact from './components/Leadingpage/Contact';
+import TermsAndConditions from './components/Registration/TermsAndCondition';
+import ProductListing from "./components/Categories/ProductListing";
+import ProductDetail from "./components/Categories/ProductDetail";
+import Cart from "./components/Cart/Cart";
+import Checkout from "./components/Checkout/Checkout";
+import UserProfile from "./components/User/UserProfile";
+import WholesalerDashboard from "./components/Wholesaler/WholesalerDashboard";
+import SearchResults from "./components/Search/SearchResults";
+import CategoryPage from "./components/Categories/CategoryPage";
+
+// Import assets
 import logo from "./assets/logo for Gebeya.jpg";
-import About from "./Components/Leadingpage/About";
-import Home from "./Components/Leadingpage/Home/Home";
-import Blog from "./Components/Leadingpage/Blog";
-import Contact from './Components/Leadingpage/Contact'
-import TermsAndConditions from './Components/Registration/TermsAndCondition'
-import ProductListing from "./Components/Categories/ProductListing";
-
-
 
 const App = () => {
   return (
     <Router>
-      <div className="bg-[white-green] min-h-screen">
+      <div className="bg-gray-50 min-h-screen">
+        <Toaster 
+          position="top-right"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: '#363636',
+              color: '#fff',
+            },
+            success: {
+              duration: 3000,
+              theme: {
+                primary: '#22c55e',
+                secondary: 'black',
+              },
+            },
+          }}
+        />
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup logo={logo} />} />
           <Route path="/signin" element={<Signin logo={logo} />} />
           <Route path="/about" element={<About />} />
-          <Route path="/Blog" element={<Blog />} />
-          <Route path="/Registration" element={<Registration />} />
-          <Route path ="/Contact" element={<Contact/>} />
-          <Route path="/terms" element={<TermsAndConditions />}/>
-          <Route path ='/products' element={< ProductListing/>}/>
-          
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/products" element={<ProductListing />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/category/:categoryName" element={<CategoryPage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/wholesaler-dashboard" element={<WholesalerDashboard />} />
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
       </div>
     </Router>
