@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
 
-// Import components
+// Import components - Fixed paths
 import Registration from "./components/Registration/Registration";
 import Signup from "./components/Registration/Signup";
 import Signin from "./components/Registration/Login";
